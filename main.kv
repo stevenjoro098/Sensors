@@ -1,0 +1,309 @@
+<MagicButton@MDRaisedButton>
+    font_name:'fonts/Poppins-Regular'
+    pos_hint:{'center_x': .5}
+    md_bg_color: 1, .54, .54, 1
+<Axis@MDLabel>
+    font_name:'fonts/MontserratAlternates-Regular.otf'
+<NotificationView>
+    notification_message:notification_message
+    notification_title:notification_title
+    MDLabel:
+        text:'Notification'
+        font_size:'30sp'
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        pos_hint:{'center_x': .6, 'center_y': .9}
+        halign:'center'
+    MDIconButton:
+        icon:'asset/notifications.png'
+        pos_hint:{'center_x': .2, 'center_y': .9}
+        user_font_size:'20sp'
+    MDTextField:
+        id:notification_title
+        hint_text:"Enter Title"
+        size_hint_x: .85
+        pos_hint:{'center_x':.5, 'center_y': .8}
+    MDTextField:
+        id:notification_message
+        hint_text:"Enter Message"
+        size_hint_x: .85
+        pos_hint:{'center_x':.5, 'center_y': .7}
+    MDRaisedButton:
+        text:'Notify'
+        md_bg_color: 0, .54, .54, 1
+        size_hint: .85, .07
+        pos_hint:{'center_x': .5, 'center_y': .55}
+        font_name:'fonts/Montserrat-Bold.otf'
+        on_release:root.get_notifier()
+<VibratorView>
+    vibrate_time:vibrate_time
+    repeat_:repeat_
+    MDLabel:
+        text:"Vibrator"
+        font_size:'30sp'
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        pos_hint:{'center_x': .5, 'center_y': .9}
+        halign:'center'
+    MDIconButton:
+        icon:'asset/vibration.png'
+        pos_hint:{'center_x': .2, 'center_y': .9}
+        user_font_size:'20sp'
+    MDTextFieldRect:
+        id:vibrate_time
+        hint_text:'Enter Time'
+        size_hint: .85, .05
+        pos_hint:{'center_x': .5, 'center_y': .8}
+    MDCheckbox:
+        id:repeat_
+        size_hint: None, None
+        size: "48dp", "48dp"
+        pos_hint:{'center_x': .3,'center_y': .7}
+    MDLabel:
+        text:'Repeat'
+        halign:'center'
+        font_name:'fonts/MontserratAlternates-Regular.otf'
+        pos_hint:{'center_x': .5,'center_y': .7}
+    MDRaisedButton:
+        text:'Vibrate'
+        size_hint: .85, .07
+        md_bg_color: 202/255, 150/255, 92/255, 1
+        pos_hint:{'center_x': .5,'center_y': .6}
+        border:30,30,30,30
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        on_release:root.get_vibration()
+<CompassView>
+    compass_x_axis:compass_x_axis
+    compass_y_axis:compass_y_axis
+    compass_z_axis:compass_z_axis
+    MDLabel:
+        text:"Compass"
+        font_size:'30sp'
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        pos_hint:{'center_x': .6, 'center_y': .9}
+        halign:'center'
+    MDIconButton:
+        icon:'asset/compass.png'
+        pos_hint:{'center_x': .25, 'center_y': .9}
+    BoxLayout:
+        orientation:'vertical'
+        pos_hint:{'center_x':.5, 'center_y':.7}
+        padding:15
+        spacing:5
+        size_hint_y: .3
+        Axis:
+            id:compass_x_axis
+            text:'X-Axis'
+        Axis:
+            id:compass_y_axis
+            text:'Y-Axis'
+        Axis:
+            id:compass_z_axis
+            text:'Z-Axis'
+    MDRaisedButton:
+        text:'Start Compass'
+        pos_hint:{'center_x':.25, 'center_y':.4}
+        md_bg_color:0, .54, .54, 1
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        on_release:root.do_toggle()
+    MDRaisedButton:
+        text:'Stop Compass'
+        pos_hint:{'center_x':.75, 'center_y':.4}
+        md_bg_color:1, 0, 0, 1
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        on_release:root.disable_compass()
+
+<Gyro>
+    xaxis:xaxis
+    yaxis:yaxis
+    zaxis:zaxis
+    gyroscope_title:gyroscope_title
+    MDLabel:
+        id:gyroscope_title
+        text:'Gyroscope'
+        font_size:'30sp'
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        pos_hint:{'center_x': .6, 'center_y': .9}
+        halign:'center'
+    MDIconButton:
+        icon:'asset/gyroscope.png'
+        pos_hint:{'center_x': .25, 'center_y': .9}
+    BoxLayout:
+        orientation:'vertical'
+        pos_hint:{'center_x':.5, 'center_y':.7}
+        padding:15
+        spacing:5
+        size_hint_y: .3
+        Axis:
+            id:xaxis
+            text:'X-Axis'
+        Axis:
+            id:yaxis
+            text:'Y-Axis'
+        Axis:
+            id:zaxis
+            text:'Z-Axis'
+    MDRaisedButton:
+        text:'Start Gyroscope'
+        pos_hint:{'center_x':.25, 'center_y':.4}
+        md_bg_color:0, .54, .54, 1
+        font_name:'fonts/MontserratAlternates-Regular.otf'
+        on_release:root.get_gyroscope()
+    MDRaisedButton:
+        text:'Stop Gyroscope'
+        pos_hint:{'center_x':.75, 'center_y':.4}
+        md_bg_color:1, 0, 0, 1
+        font_name:'fonts/MontserratAlternates-Regular.otf'
+        on_release:root.disable_gyro()
+<BatteryView>
+    percentage:percentage
+    charging:charging
+    MDLabel:
+        id:battery_title
+        text:'Battery'
+        font_size:'30sp'
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        pos_hint:{'center_x': .5, 'center_y': .9}
+        halign:'center'
+    MDIconButton:
+        icon:'asset/battery.png'
+        pos_hint:{'center_x': .2, 'center_y': .9}
+        user_font_size:'35sp'
+    MDLabel:
+        text:"Percentage:"
+        font_name:'fonts/MontserratAlternates-Regular.otf'
+        halign:'center'
+        pos_hint:{'center_x':.3,'center_y': .7}
+    MDLabel:
+        id:percentage
+        text:""
+        font_name:'fonts/MontserratAlternates-SemiBold.otf'
+        halign:'center'
+        pos_hint:{'center_x':.7,'center_y': .7}
+    MDLabel:
+        text:"Charging:"
+        font_name:'fonts/MontserratAlternates-Regular.otf'
+        halign:'center'
+        pos_hint:{'center_x':.27,'center_y': .6}
+    MDChip:
+        id:charging
+        icon:'battery-charging'
+        text:''
+        color: 1, 1, 1, 1
+        pos_hint:{'center_x':.7,'center_y': .6}
+        elevation:10
+        halign:'center'
+    MDRaisedButton:
+        text:'Check Status'
+        size_hint: .85, .06
+        pos_hint:{'center_x':.5,'center_y':.4}
+        md_bg_color: 1, .54, .54, 1
+        on_release:root.get_battery()
+ScreenManager:
+    screen_manager:screen_manager
+    accel_status:accel_status
+    toggle_button:toggle_button
+    id:screen_manager
+    Screen:
+        name:'home'
+        MDIconButton:
+            icon:'asset/android.png'
+            pos_hint:{'center_x': .5, 'center_y': .9}
+            user_font_size: '70sp'
+        MDLabel:
+            text:"Android Sensors"
+            font_name:'fonts/Poppins-SemiBold'
+            pos_hint:{'center_x': .5, 'center_y': .77}
+            halign:'center'
+            font_size:'30sp'
+        MDLabel:
+            text:"with KIVY"
+            font_name:'fonts/MontserratAlternates-Regular.otf'
+            pos_hint:{'center_x': .5, 'center_y': .72}
+            halign:'center'
+            font_size:'20sp'
+        BoxLayout:
+            orientation:'vertical'
+            spacing:10
+            pos_hint:{'center_x':.5, 'center_y':.66}
+            MagicButton:
+                text:'Accelerometer'
+                size_hint: .85, None
+                on_release:
+                    screen_manager.current = 'accelerometer'
+            MagicButton:
+                text:'Compass'
+                size_hint: .85, None
+                on_release:screen_manager.current = 'compass'
+            MagicButton:
+                text:'Gyroscope'
+                size_hint: .85, None
+                on_release:screen_manager.current = 'gyroscope'
+            MagicButton:
+                text:'Battery'
+                size_hint: .85, None
+                on_release:screen_manager.current = 'battery'
+            MagicButton:
+                text:'Notification'
+                size_hint: .85, None
+                on_release:screen_manager.current = 'notification'
+
+            MagicButton:
+                text:'Vibrator'
+                size_hint: .85, None
+                on_release:screen_manager.current = 'vibrator'
+        MDLabel:
+            pos_hint:{'center_x': .5,'center_y': .08}
+            text:'Powered By PLYER...'
+            halign:'center'
+            theme_text_color:'Secondary'
+            font_name:'fonts/MontserratAlternates-Light.otf'
+    Screen:
+        name:'accelerometer'
+        BoxLayout:
+            orientation:'vertical'
+            MDLabel:
+                id:accel_status
+            MDRaisedButton:
+                id:toggle_button
+                text: 'Acc'
+    Screen:
+        name:'gyroscope'
+        Gyro:
+        MDTextButton:
+            text:'Home'
+            font_name:'fonts/MontserratAlternates-Regular.otf'
+            pos_hint:{'center_x':.5, 'center_y':.3}
+            on_release:screen_manager.current = 'home'
+    Screen:
+        name:'compass'
+        CompassView:
+        MDTextButton:
+            text:'Home'
+            font_name:'fonts/MontserratAlternates-Regular.otf'
+            pos_hint:{'center_x':.5, 'center_y':.3}
+            on_release:screen_manager.current = 'home'
+    Screen:
+        name:'battery'
+        BatteryView:
+        MDTextButton:
+            text:'Home'
+            font_name:'fonts/MontserratAlternates-Regular.otf'
+            pos_hint:{'center_x':.5, 'center_y':.3}
+            on_release:screen_manager.current = 'home'
+    Screen:
+        name:'vibrator'
+        VibratorView:
+        MDTextButton:
+            text:'Home'
+            font_name:'fonts/MontserratAlternates-Regular.otf'
+            pos_hint:{'center_x':.5, 'center_y':.3}
+            on_release:screen_manager.current = 'home'
+
+    Screen:
+        name:'notification'
+        NotificationView:
+        MDTextButton:
+            text:'Home'
+            font_name:'fonts/MontserratAlternates-Regular.otf'
+            pos_hint:{'center_x':.5, 'center_y':.3}
+            on_release:screen_manager.current = 'home'
+
